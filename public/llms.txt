@@ -1,0 +1,47 @@
+# MMA Moms (mmamoms.com)
+
+## About
+MMA Moms is a women's MMA coverage site written for female fans and women who love the sport. We cover fighters, fights, history, rankings, and training -- with the depth and respect that female MMA fans deserve.
+
+## What We Cover
+- Fighter analysis and career breakdowns (Nunes, Shevchenko, Zhang Weili, Rousey, and more)
+- Fight rankings and historical retrospectives
+- Women's MMA divisional history (strawweight, flyweight, bantamweight)
+- Training guides for women who want to start MMA
+- Pay equity and business analysis in women's MMA
+- Next generation fighters to watch
+
+## Content Philosophy
+Written for female fans who already know the sport. No condescension. No basics primer. Real coverage for real fans who have been watching since the beginning.
+
+## Site Structure
+- Homepage: Hero, featured posts, email signup
+- /blog: All 15 posts with category filtering
+- /blog/[slug]: Individual post pages with full content and affiliate blocks
+
+## Blog Posts
+1. Amanda Nunes Greatest Female Fighter Ever -- /blog/amanda-nunes-greatest-female-fighter-ever
+2. Ronda Rousey Impact on Women's MMA -- /blog/ronda-rousey-impact-womens-mma
+3. Zhang Weili Rise and Global Impact -- /blog/zhang-weili-rise-chinese-womens-mma
+4. Valentina Shevchenko Fighting Style Breakdown -- /blog/valentina-shevchenko-fighting-style-breakdown
+5. Women's Strawweight Division History -- /blog/womens-strawweight-division-history
+6. Julianna Pena vs Amanda Nunes Rivalry -- /blog/julianna-pena-amanda-nunes-rivalry
+7. Best Women's MMA Fights All Time -- /blog/best-womens-mma-fights-all-time
+8. Women's MMA Pay Equity in the UFC -- /blog/women-mma-pay-equity-ufc
+9. How to Start Training MMA (Women's Guide) -- /blog/how-to-start-training-mma-women
+10. Female MMA Fighters Under 25 to Watch -- /blog/female-mma-fighters-under-25-to-watch
+11. Women's Pound for Pound MMA Rankings -- /blog/womens-pound-for-pound-mma-rankings
+12. MMA Training for Self Defense Women -- /blog/mma-training-for-self-defense-women
+13. Women's MMA Moments That Changed the UFC -- /blog/womens-mma-moments-changed-ufc-forever
+14. Best Female MMA Coaches and Trainers -- /blog/best-female-mma-coaches-trainers
+15. Watching UFC Women's MMA First Time Guide -- /blog/watching-ufc-women-first-time-guide
+
+## Affiliate Partnerships
+- UFC Fight Pass (https://ufcfightpass.com) -- streaming platform for UFC events and archive
+- Venum (https://www.venum.com/?ref=mmamoms-20) -- official UFC gear partner, training equipment
+
+## Technical
+- Built with Next.js 15 App Router
+- Fully static, no database
+- Sitemap at /sitemap.xml
+- Robots at /robots.txt
