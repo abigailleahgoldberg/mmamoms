@@ -820,6 +820,51 @@ Zhang Weili versus Joanna Jedrzejczyk from UFC Fight Night 157 in 2019. It is wi
 When watching turns into training, [Venum](https://www.venum.com/?ref=mmamoms-20) has beginner-friendly gear designed for women. Gloves, wraps, shorts -- everything you need for your first day.
 </affiliate-block>`,
   },
+  {
+    slug: 'ronda-rousey-saved-womens-mma',
+    title: "How Ronda Rousey Saved Women's MMA (And Almost Killed It)",
+    excerpt: "The full arc of the most important figure in women's fighting history.",
+    date: 'March 14, 2026',
+    category: 'History',
+    readTime: '10 min',
+    content: `Ronda Rousey did more for women's MMA than any single person in history. Before Rousey, the UFC didn't sign women. Dana White said publicly it would never happen. Rousey changed his mind by being impossible to ignore. Her armbar was a cultural phenomenon. UFC 157 in 2013 was the first event with a women's fight. The division was born.\n\nFrom 2013 to 2015, six title defenses, most ending in the first round. She transcended the sport with movies and magazine covers. Then Holly Holm's head kick at UFC 193 ended the era. When Rousey returned against Nunes, it was 48 seconds of brutal reality. She retired without saying goodbye.\n\nThe legacy is complicated but undeniable. Every woman fighting in the UFC today is standing on ground Rousey broke.`,
+  },
+  {
+    slug: 'best-womens-mma-gyms-america',
+    title: "The Best Women's MMA Gyms in America",
+    excerpt: "From ATT in Florida to Jackson-Wink in New Mexico.",
+    date: 'March 14, 2026',
+    category: 'Training',
+    readTime: '8 min',
+    content: `Finding a good gym is the most important decision in martial arts. ATT in Coconut Creek, Florida is the gold standard. Amanda Nunes and Kayla Harrison trained there. Jackson-Wink in Albuquerque produced Holly Holm's legendary head kick. Team Oyama in LA is Valentina Shevchenko's home. Elevation Fight Team in Denver trained Rose Namajunas. Fortis MMA in Dallas is one of the fastest-growing.\n\nWhen choosing any gym, look for: clean mats, women's classes, at least one female coach, a fundamentals program, and a free trial class. You don't need to be in shape to start. You get in shape BY training.`,
+  },
+  {
+    slug: 'why-your-daughter-should-try-martial-arts',
+    title: "Why Your Daughter Should Try Martial Arts: A Mom's Perspective",
+    excerpt: "Confidence, discipline, and the ability to handle herself.",
+    date: 'March 14, 2026',
+    category: 'Family',
+    readTime: '7 min',
+    content: `My daughter started jiu-jitsu at 8. The confidence is what every parent notices first. A quiet certainty that changes how she carries herself. She doesn't get pushed around at school, not because she fights but because she carries herself like someone who doesn't need to prove anything.\n\nMartial arts teaches problem-solving under pressure, losing gracefully, discipline without rigidity, and body awareness based on capability not appearance. For self-defense: most real-world altercations end on the ground, and knowing how to control or escape is practical knowledge.\n\nInjury rates are lower than soccer, gymnastics, and cheerleading. Most gyms offer kids' classes starting at 5-6, with ages 7-10 being the sweet spot. Give it three months before deciding.`,
+  },
+  {
+    slug: 'business-of-womens-mma',
+    title: "The Business of Women's MMA: Sponsorships, Pay, and the Future",
+    excerpt: "What female fighters actually earn and why the pay gap exists.",
+    date: 'March 14, 2026',
+    category: 'Industry',
+    readTime: '8 min',
+    content: `Debuting female UFC fighters earn around 12,000 dollars to fight plus 12,000 win bonus. Mid-card veterans: 30K-75K per fight. Champions: 300K-500K+. Most women fight 2-3 times per year. After taxes, training costs, and camp expenses, many early-career fighters earn less than the median American salary.\n\nThe pay gap widens at the top. The argument: pay is based on drawing power. The counterargument: women's MMA never got the same promotional push. Both have merit.\n\nWhat's changing: more women's main events, international growth through Zhang Weili and Alexa Grasso, and better media coverage. The talent pool is deeper than ever.`,
+  },
+  {
+    slug: 'explaining-mma-to-other-moms',
+    title: "Explaining MMA to Other Moms Who Think You're Crazy",
+    excerpt: "The conversation every MMA mom has had at least once.",
+    date: 'March 14, 2026',
+    category: 'Lifestyle',
+    readTime: '6 min',
+    content: `You're at school pickup. You mention watching the fights Saturday night. The look you get back is somewhere between confusion and concern. Welcome to being an MMA mom.\n\nThe elevator pitch: MMA is a sport with multiple martial arts disciplines, strict rules, weight classes, and referee stoppages. For the violence concern: MMA has a lower serious injury rate than football, hockey, and cheerleading.\n\nIf your daughter trains, lead with the benefits: problem-solving, discipline, confidence, fitness. The MMA community is welcoming once you're in it. You don't owe anyone an explanation for what you enjoy. Next time someone gives you that look at pickup, smile and say: you should come watch sometime.`,
+  },
 ]
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
