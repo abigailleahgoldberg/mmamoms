@@ -1,15 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800&family=Barlow:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-  --plum: #2D0A2E;
+  /* Updated palette */
+  --bg: #0C0610;
+  --surface: #1A0E1F;
   --pink: #FF2D78;
-  --violet: #7B2FBE;
+  --purple: #A855F7;
   --bone: #F5F0EB;
-  --silver: #C0C0C8;
-  --dark: #0F060F;
-  /* legacy aliases */
+  --muted: #A09090;
+  --border: rgba(255,45,120,0.08);
+
+  /* Legacy aliases kept for blog pages that reference them */
+  --plum: #1A0E1F;
+  --violet: #A855F7;
+  --dark: #0C0610;
   --cream: #F5F0EB;
-  --purple: #7B2FBE;
+  --silver: #A09090;
   --gold: #FF2D78;
   --red: #FF2D78;
 }
@@ -25,12 +31,13 @@ html {
 }
 
 body {
-  background-color: var(--dark);
+  background-color: var(--bg);
   color: var(--bone);
-  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 400;
+  font-family: var(--font-body, 'DM Sans'), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -41,4 +48,14 @@ a {
 img {
   max-width: 100%;
   height: auto;
+}
+
+/* Utility: display font for big headlines */
+.display {
+  font-family: var(--font-display, 'Bebas Neue'), sans-serif;
+}
+
+/* Utility: mono for stats/records */
+.mono {
+  font-family: 'Space Mono', monospace;
 }

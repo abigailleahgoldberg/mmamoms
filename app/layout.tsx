@@ -1,12 +1,27 @@
 import type { Metadata } from 'next'
+import { Bebas_Neue, DM_Sans } from 'next/font/google'
 import './globals.css'
+import NavBar from './NavBar'
+
+const bebasNeue = Bebas_Neue({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+})
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
     default: 'IRON MOM | MMA Coverage for Women Who Know the Sport',
     template: '%s | IRON MOM',
   },
-  description: 'The MMA community for women who don\'t need it explained. Fighter breakdowns, card analysis, picks, and real talk -- from fans who actually watch.',
+  description: "The MMA community for women who don't need it explained. Fighter breakdowns, card analysis, picks, and real talk -- from fans who actually watch.",
   metadataBase: new URL('https://mmamoms.com'),
   openGraph: {
     type: 'website',
@@ -22,153 +37,136 @@ export const metadata: Metadata = {
   },
 }
 
+const FOOTER_LINKS = [
+  {
+    heading: 'Coverage',
+    links: [
+      { label: 'Fighters', href: '/fighters' },
+      { label: 'Events', href: '/events' },
+      { label: 'Divisions', href: '/divisions' },
+      { label: 'History', href: '/history' },
+    ],
+  },
+  {
+    heading: 'Blog',
+    links: [
+      { label: 'All Posts', href: '/blog' },
+      { label: 'Fighter Breakdowns', href: '/blog' },
+      { label: 'Card Analysis', href: '/blog' },
+      { label: 'Rankings', href: '/blog' },
+    ],
+  },
+  {
+    heading: 'Network',
+    links: [
+      { label: 'MMA Dads', href: 'https://mmadads.com' },
+    ],
+  },
+]
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body style={{ background: '#0F060F' }}>
-        {/* NAV */}
-        <header style={{
-          background: '#0F060F',
-          borderBottom: '2px solid #FF2D78',
-          position: 'sticky',
-          top: 0,
-          zIndex: 100,
-        }}>
-          <nav style={{
-            maxWidth: '1280px',
-            margin: '0 auto',
-            padding: '0 2rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            height: '60px',
-          }}>
-            <a href="/" style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 800,
-              fontSize: '1.6rem',
-              color: '#FF2D78',
-              letterSpacing: '4px',
-              textTransform: 'uppercase',
-            }}>
-              IRON MOM
-            </a>
-            <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
-              {[
-                { label: "THIS WEEK'S CARD", href: '/blog' },
-                { label: 'FIGHTERS', href: '/blog' },
-                { label: 'BLOG', href: '/blog' },
-                { label: 'PICKS', href: '/blog' },
-              ].map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  style={{
-                    fontFamily: "'Space Mono', monospace",
-                    fontSize: '0.7rem',
-                    color: '#F5F0EB',
-                    letterSpacing: '0.05em',
-                    opacity: 0.85,
-                  }}
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-          </nav>
-        </header>
+    <html lang="en" className={`${bebasNeue.variable} ${dmSans.variable}`}>
+      <body>
+        <NavBar />
 
         {children}
 
         {/* FOOTER */}
         <footer style={{
-          background: '#0A040A',
-          padding: '3rem 2rem',
-          borderTop: '1px solid rgba(255,45,120,0.2)',
+          background: '#070409',
+          padding: '4rem 1.5rem 2.5rem',
+          borderTop: '1px solid rgba(255,45,120,0.12)',
         }}>
-          <div style={{
-            maxWidth: '1280px',
-            margin: '0 auto',
-          }}>
+          <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+
+            {/* Top row */}
             <div style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '2rem',
-              justifyContent: 'space-between',
-              alignItems: 'flex-start',
-              marginBottom: '2rem',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '3rem',
+              marginBottom: '3rem',
             }}>
+              {/* Brand col */}
               <div>
                 <div style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
-                  fontWeight: 800,
-                  fontSize: '1.4rem',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1.75rem',
                   color: '#FF2D78',
-                  letterSpacing: '4px',
-                  marginBottom: '0.5rem',
+                  letterSpacing: '6px',
+                  marginBottom: '0.75rem',
                 }}>
                   IRON MOM
                 </div>
                 <p style={{
                   fontFamily: "'Space Mono', monospace",
-                  fontSize: '0.7rem',
-                  color: 'rgba(245,240,235,0.6)',
-                  maxWidth: '280px',
-                  lineHeight: '1.8',
+                  fontSize: '0.68rem',
+                  color: 'rgba(245,240,235,0.5)',
+                  lineHeight: 1.9,
+                  maxWidth: '240px',
                 }}>
                   mmamoms.com -- MMA coverage for women who know the sport.
                 </p>
               </div>
-              <div style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap' }}>
-                {[
-                  { label: 'Blog', href: '/blog' },
-                  { label: 'Fighters', href: '/blog' },
-                  { label: "This Week's Card", href: '/blog' },
-                ].map(({ label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    style={{
-                      fontFamily: "'Space Mono', monospace",
-                      fontSize: '0.7rem',
-                      color: 'rgba(245,240,235,0.7)',
-                      letterSpacing: '0.03em',
-                    }}
-                  >
-                    {label}
-                  </a>
-                ))}
-              </div>
+
+              {/* Link cols */}
+              {FOOTER_LINKS.map(col => (
+                <div key={col.heading}>
+                  <div style={{
+                    fontFamily: "'Space Mono', monospace",
+                    fontSize: '0.6rem',
+                    color: '#FF2D78',
+                    letterSpacing: '3px',
+                    textTransform: 'uppercase',
+                    marginBottom: '1rem',
+                  }}>
+                    {col.heading}
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                    {col.links.map(({ label, href }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        style={{
+                          fontFamily: 'var(--font-body)',
+                          fontSize: '0.875rem',
+                          color: 'rgba(245,240,235,0.6)',
+                          letterSpacing: '0.01em',
+                        }}
+                      >
+                        {label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
+
+            {/* Bottom bar */}
             <div style={{
-              borderTop: '1px solid rgba(255,45,120,0.15)',
+              borderTop: '1px solid rgba(255,45,120,0.1)',
               paddingTop: '1.5rem',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
               flexWrap: 'wrap',
-              gap: '1rem',
+              gap: '0.75rem',
             }}>
               <p style={{
                 fontFamily: "'Space Mono', monospace",
-                fontSize: '0.65rem',
-                color: 'rgba(245,240,235,0.35)',
+                fontSize: '0.6rem',
+                color: 'rgba(245,240,235,0.3)',
               }}>
                 &copy; {new Date().getFullYear()} IRON MOM / mmamoms.com. All rights reserved.
               </p>
-              <p style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: '0.6rem',
-                color: 'rgba(245,240,235,0.25)',
-                maxWidth: '400px',
-                textAlign: 'right',
-              }}>
-                Some links are affiliate links. We may earn a commission at no extra cost to you.
-              </p>
+              <div style={{ display: 'flex', gap: '1.5rem' }}>
+                <a href="/privacy" style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.6rem', color: 'rgba(245,240,235,0.3)' }}>Privacy</a>
+                <a href="/terms" style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.6rem', color: 'rgba(245,240,235,0.3)' }}>Terms</a>
+              </div>
             </div>
           </div>
         </footer>

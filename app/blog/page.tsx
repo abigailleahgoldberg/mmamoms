@@ -2,62 +2,50 @@ import type { Metadata } from 'next'
 import { getAllPosts } from './data'
 
 export const metadata: Metadata = {
-  title: 'Blog | MMA Moms',
-  description: 'All posts from MMA Moms: fighter breakdowns, rankings, training guides, and history. Women\'s MMA coverage that actually gets it.',
+  title: 'Blog | Iron Mom',
+  description: "All posts from Iron Mom: fighter breakdowns, rankings, training guides, and history. Women's MMA coverage that actually gets it.",
 }
 
 export default function BlogPage() {
   const posts = getAllPosts()
-
   const categories = ['All', ...Array.from(new Set(posts.map(p => p.category)))]
 
   return (
-    <main style={{ minHeight: '100vh' }}>
-      {/* Header */}
+    <main style={{ minHeight: '100vh', background: '#0C0610' }}>
+
+      {/* HEADER */}
       <section style={{
-        background: 'linear-gradient(180deg, rgba(124, 58, 237, 0.08) 0%, transparent 100%)',
-        borderBottom: '1px solid rgba(124, 58, 237, 0.1)',
-        padding: '4rem 1.5rem 3rem',
+        background: 'linear-gradient(180deg, #1A0E1F 0%, #0C0610 100%)',
+        padding: 'clamp(4rem, 8vw, 6rem) 1.5rem',
+        borderBottom: '1px solid rgba(255,45,120,0.1)',
       }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{
-            fontSize: '0.75rem',
-            fontWeight: 700,
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: 'var(--purple)',
-            marginBottom: '0.75rem',
-          }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+          <nav style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.6rem', color: '#FF2D78', letterSpacing: '3px', marginBottom: '1.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <a href="/" style={{ color: '#A09090' }}>Iron Mom</a>
+            <span style={{ color: 'rgba(255,45,120,0.3)' }}>/</span>
+            <span>Blog</span>
+          </nav>
+          <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.62rem', color: '#FF2D78', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '0.6rem' }}>
             All Posts
           </div>
-          <h1 style={{
-            fontSize: 'clamp(2rem, 5vw, 3rem)',
-            fontWeight: 900,
-            letterSpacing: '-0.03em',
-            color: 'var(--cream)',
-            marginBottom: '1rem',
-          }}>
-            The Blog
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3rem, 7vw, 5.5rem)', color: '#F5F0EB', textTransform: 'uppercase', lineHeight: 0.9, letterSpacing: '3px', marginBottom: '1rem' }}>
+            THE BLOG
           </h1>
-          <p style={{
-            fontSize: '1.05rem',
-            color: 'rgba(250, 250, 248, 0.6)',
-            maxWidth: '500px',
-            lineHeight: 1.7,
-          }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.05rem', color: 'rgba(245,240,235,0.55)', maxWidth: '480px', lineHeight: 1.75 }}>
             Fighter breakdowns, rankings, training guides, history, and everything else in women&apos;s MMA. {posts.length} posts and counting.
           </p>
         </div>
       </section>
 
-      {/* Category chips */}
+      {/* CATEGORY STRIP */}
       <div style={{
-        borderBottom: '1px solid rgba(250, 250, 248, 0.06)',
+        borderBottom: '1px solid rgba(255,45,120,0.08)',
         padding: '1rem 1.5rem',
         overflowX: 'auto',
+        background: '#0C0610',
       }}>
         <div style={{
-          maxWidth: '1200px',
+          maxWidth: '1280px',
           margin: '0 auto',
           display: 'flex',
           gap: '0.5rem',
@@ -67,14 +55,15 @@ export default function BlogPage() {
             <span
               key={cat}
               style={{
-                padding: '0.35rem 1rem',
-                borderRadius: '100px',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                background: i === 0 ? 'var(--purple)' : 'rgba(250, 250, 248, 0.06)',
-                color: i === 0 ? 'var(--cream)' : 'rgba(250, 250, 248, 0.6)',
+                fontFamily: "'Space Mono', monospace",
+                padding: '0.3rem 0.9rem',
+                fontSize: '0.6rem',
+                letterSpacing: '2px',
+                textTransform: 'uppercase',
+                background: i === 0 ? '#FF2D78' : 'rgba(245,240,235,0.04)',
+                color: i === 0 ? '#0C0610' : 'rgba(245,240,235,0.5)',
                 cursor: 'pointer',
-                border: i === 0 ? 'none' : '1px solid rgba(250, 250, 248, 0.1)',
+                border: i === 0 ? 'none' : '1px solid rgba(245,240,235,0.08)',
               }}
             >
               {cat}
@@ -83,70 +72,62 @@ export default function BlogPage() {
         </div>
       </div>
 
-      {/* Post Grid */}
-      <section style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '3rem 1.5rem',
-      }}>
+      {/* POST GRID */}
+      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: 'clamp(3rem, 5vw, 4rem) 1.5rem' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
           gap: '1.5rem',
         }}>
-          {posts.map(post => (
+          {posts.map((post, i) => (
             <a
               key={post.slug}
               href={`/blog/${post.slug}`}
               style={{
-                display: 'block',
-                background: 'rgba(250, 250, 248, 0.03)',
-                border: '1px solid rgba(250, 250, 248, 0.08)',
-                borderRadius: '12px',
+                display: 'flex',
+                flexDirection: 'column',
+                background: '#1A0E1F',
+                borderTop: `3px solid ${i === 0 ? '#FF2D78' : 'rgba(255,45,120,0.2)'}`,
                 padding: '1.75rem',
-                transition: 'border-color 0.2s, background 0.2s',
-                cursor: 'pointer',
+                textDecoration: 'none',
               }}
             >
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '1rem',
-              }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                 <span style={{
-                  fontSize: '0.72rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: '0.58rem',
+                  letterSpacing: '2px',
                   textTransform: 'uppercase',
-                  color: 'var(--purple)',
-                  background: 'rgba(124, 58, 237, 0.1)',
-                  padding: '0.2rem 0.65rem',
-                  borderRadius: '100px',
+                  color: '#FF2D78',
+                  background: 'rgba(255,45,120,0.1)',
+                  padding: '0.2rem 0.6rem',
                 }}>
                   {post.category}
                 </span>
-                <span style={{ fontSize: '0.75rem', color: 'rgba(250, 250, 248, 0.35)' }}>
+                <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.6rem', color: '#A09090' }}>
                   {post.readTime}
                 </span>
               </div>
 
               <h2 style={{
-                fontSize: '1.05rem',
-                fontWeight: 700,
-                lineHeight: 1.35,
-                color: 'var(--cream)',
-                marginBottom: '0.65rem',
-                letterSpacing: '-0.01em',
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.5rem',
+                color: '#F5F0EB',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                lineHeight: 1.05,
+                marginBottom: '0.75rem',
               }}>
                 {post.title}
               </h2>
 
               <p style={{
+                fontFamily: 'var(--font-body)',
                 fontSize: '0.875rem',
-                lineHeight: 1.65,
-                color: 'rgba(250, 250, 248, 0.55)',
+                lineHeight: 1.7,
+                color: 'rgba(245,240,235,0.55)',
                 marginBottom: '1.5rem',
+                flex: 1,
                 display: '-webkit-box',
                 WebkitLineClamp: 3,
                 WebkitBoxOrient: 'vertical',
@@ -159,13 +140,13 @@ export default function BlogPage() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                borderTop: '1px solid rgba(250, 250, 248, 0.06)',
+                borderTop: '1px solid rgba(255,45,120,0.08)',
                 paddingTop: '1rem',
               }}>
-                <span style={{ fontSize: '0.78rem', color: 'rgba(250, 250, 248, 0.35)' }}>
+                <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.58rem', color: '#A09090' }}>
                   {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </span>
-                <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--purple)' }}>
+                <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.65rem', color: '#FF2D78', letterSpacing: '1px' }}>
                   Read &rarr;
                 </span>
               </div>

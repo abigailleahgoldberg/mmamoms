@@ -36,19 +36,18 @@ function renderContent(content: string) {
         <div
           key={i}
           style={{
-            background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(217, 119, 6, 0.06) 100%)',
-            border: '1px solid rgba(124, 58, 237, 0.25)',
-            borderRadius: '12px',
+            background: 'rgba(168,85,247,0.07)',
+            border: '1px solid rgba(168,85,247,0.2)',
             padding: '1.75rem 2rem',
             margin: '2.5rem 0',
           }}
         >
           <div style={{
-            fontSize: '0.7rem',
-            fontWeight: 700,
-            letterSpacing: '0.12em',
+            fontFamily: "'Space Mono', monospace",
+            fontSize: '0.58rem',
+            letterSpacing: '3px',
             textTransform: 'uppercase',
-            color: 'var(--gold)',
+            color: '#A855F7',
             marginBottom: '1rem',
           }}>
             Recommended
@@ -56,40 +55,27 @@ function renderContent(content: string) {
           {inner.split('\n').filter(Boolean).map((line, j) => {
             if (line.startsWith('**') && line.endsWith('**')) {
               return (
-                <div key={j} style={{ fontWeight: 700, color: 'var(--cream)', marginBottom: '0.5rem', fontSize: '1rem' }}>
+                <div key={j} style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', color: '#F5F0EB', marginBottom: '0.5rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
                   {line.replace(/\*\*/g, '')}
                 </div>
               )
             }
-            // Parse markdown links like [text](url)
             const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g
             const parts2: React.ReactNode[] = []
             let lastIndex = 0
             let match
-
             while ((match = linkRegex.exec(line)) !== null) {
-              if (match.index > lastIndex) {
-                parts2.push(line.slice(lastIndex, match.index))
-              }
+              if (match.index > lastIndex) parts2.push(line.slice(lastIndex, match.index))
               parts2.push(
-                <a
-                  key={match.index}
-                  href={match[2]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'var(--purple)', fontWeight: 600, textDecoration: 'underline' }}
-                >
+                <a key={match.index} href={match[2]} target="_blank" rel="noopener noreferrer" style={{ color: '#FF2D78', fontWeight: 600, textDecoration: 'underline' }}>
                   {match[1]}
                 </a>
               )
               lastIndex = match.index + match[0].length
             }
-            if (lastIndex < line.length) {
-              parts2.push(line.slice(lastIndex))
-            }
-
+            if (lastIndex < line.length) parts2.push(line.slice(lastIndex))
             return (
-              <p key={j} style={{ fontSize: '0.9rem', color: 'rgba(250, 250, 248, 0.7)', lineHeight: 1.7, marginBottom: '0.5rem' }}>
+              <p key={j} style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem', color: 'rgba(245,240,235,0.65)', lineHeight: 1.7, marginBottom: '0.5rem' }}>
                 {parts2}
               </p>
             )
@@ -98,7 +84,6 @@ function renderContent(content: string) {
       )
     }
 
-    // Regular content: parse markdown-like headings, bold, paragraphs
     const lines = part.split('\n')
     const elements: React.ReactNode[] = []
     let i2 = 0
@@ -109,18 +94,19 @@ function renderContent(content: string) {
       if (line.startsWith('**') && line.endsWith('**') && !line.slice(2, -2).includes('**')) {
         elements.push(
           <h3 key={`h3-${i2}`} style={{
-            fontSize: '1.25rem',
-            fontWeight: 800,
-            color: 'var(--cream)',
-            marginTop: '2rem',
-            marginBottom: '0.75rem',
-            letterSpacing: '-0.01em',
+            fontFamily: 'var(--font-display)',
+            fontSize: '1.65rem',
+            color: '#F5F0EB',
+            marginTop: '2.5rem',
+            marginBottom: '0.85rem',
+            letterSpacing: '1px',
+            textTransform: 'uppercase',
+            lineHeight: 1,
           }}>
             {line.replace(/\*\*/g, '')}
           </h3>
         )
       } else {
-        // Inline bold parsing
         const renderLine = (text: string) => {
           const segments: React.ReactNode[] = []
           const boldReg = /\*\*([^*]+)\*\*/g
@@ -128,19 +114,19 @@ function renderContent(content: string) {
           let m
           while ((m = boldReg.exec(text)) !== null) {
             if (m.index > li) segments.push(text.slice(li, m.index))
-            segments.push(<strong key={m.index}>{m[1]}</strong>)
+            segments.push(<strong key={m.index} style={{ color: '#F5F0EB', fontWeight: 700 }}>{m[1]}</strong>)
             li = m.index + m[0].length
           }
           if (li < text.length) segments.push(text.slice(li))
           return segments
         }
-
         elements.push(
           <p key={`p-${i2}`} style={{
+            fontFamily: 'var(--font-body)',
             fontSize: '1.05rem',
-            lineHeight: 1.8,
-            color: 'rgba(250, 250, 248, 0.82)',
-            marginBottom: '1.25rem',
+            lineHeight: 1.85,
+            color: 'rgba(245,240,235,0.78)',
+            marginBottom: '1.35rem',
           }}>
             {renderLine(line)}
           </p>
@@ -163,54 +149,50 @@ export default async function BlogPostPage({ params }: Props) {
   const next = currentIndex > 0 ? allPosts[currentIndex - 1] : null
 
   return (
-    <main>
-      {/* Article Header */}
+    <main style={{ background: '#0C0610', minHeight: '100vh' }}>
+
+      {/* ARTICLE HEADER */}
       <header style={{
-        background: 'linear-gradient(180deg, rgba(124, 58, 237, 0.08) 0%, transparent 100%)',
-        borderBottom: '1px solid rgba(124, 58, 237, 0.1)',
-        padding: '4rem 1.5rem 3rem',
+        background: 'linear-gradient(180deg, #1A0E1F 0%, #0C0610 100%)',
+        borderBottom: '1px solid rgba(255,45,120,0.1)',
+        padding: 'clamp(4rem, 8vw, 6rem) 1.5rem 3rem',
       }}>
-        <div style={{ maxWidth: '760px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '780px', margin: '0 auto' }}>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
-            <a href="/blog" style={{
-              fontSize: '0.8rem',
-              color: 'rgba(250, 250, 248, 0.5)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.35rem',
-            }}>
+            <a href="/blog" style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.65rem', color: '#A09090', letterSpacing: '1px' }}>
               &larr; All Posts
             </a>
-            <span style={{ color: 'rgba(250, 250, 248, 0.2)', fontSize: '0.8rem' }}>|</span>
+            <span style={{ color: 'rgba(245,240,235,0.15)' }}>|</span>
             <span style={{
-              fontSize: '0.72rem',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
+              fontFamily: "'Space Mono', monospace",
+              fontSize: '0.58rem',
+              letterSpacing: '2px',
               textTransform: 'uppercase',
-              color: 'var(--purple)',
-              background: 'rgba(124, 58, 237, 0.1)',
-              padding: '0.2rem 0.65rem',
-              borderRadius: '100px',
+              color: '#FF2D78',
+              background: 'rgba(255,45,120,0.1)',
+              padding: '0.2rem 0.6rem',
             }}>
               {post.category}
             </span>
           </div>
 
           <h1 style={{
-            fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-            fontWeight: 900,
-            lineHeight: 1.1,
-            letterSpacing: '-0.03em',
-            color: 'var(--cream)',
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+            color: '#F5F0EB',
+            textTransform: 'uppercase',
+            lineHeight: 0.95,
+            letterSpacing: '2px',
             marginBottom: '1.25rem',
           }}>
             {post.title}
           </h1>
 
           <p style={{
-            fontSize: '1.15rem',
-            lineHeight: 1.6,
-            color: 'rgba(250, 250, 248, 0.65)',
+            fontFamily: 'var(--font-body)',
+            fontSize: '1.1rem',
+            lineHeight: 1.65,
+            color: 'rgba(245,240,235,0.6)',
             marginBottom: '1.75rem',
           }}>
             {post.excerpt}
@@ -220,61 +202,57 @@ export default async function BlogPostPage({ params }: Props) {
             display: 'flex',
             gap: '1.5rem',
             alignItems: 'center',
-            fontSize: '0.85rem',
-            color: 'rgba(250, 250, 248, 0.45)',
+            fontFamily: "'Space Mono', monospace",
+            fontSize: '0.62rem',
+            color: '#A09090',
             paddingTop: '1.25rem',
-            borderTop: '1px solid rgba(250, 250, 248, 0.08)',
+            borderTop: '1px solid rgba(255,45,120,0.1)',
           }}>
-            <span>
-              {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-            </span>
-            <span style={{ color: 'rgba(250, 250, 248, 0.2)' }}>|</span>
+            <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+            <span style={{ color: 'rgba(245,240,235,0.15)' }}>|</span>
             <span>{post.readTime}</span>
           </div>
         </div>
       </header>
 
-      {/* Article Content */}
-      <article style={{
-        maxWidth: '760px',
-        margin: '0 auto',
-        padding: '3rem 1.5rem',
-      }}>
+      {/* ARTICLE BODY */}
+      <article style={{ maxWidth: '780px', margin: '0 auto', padding: 'clamp(3rem, 5vw, 4rem) 1.5rem' }}>
         {renderContent(post.content)}
       </article>
 
-      {/* Post navigation */}
+      {/* POST NAV */}
       <nav style={{
-        maxWidth: '760px',
+        maxWidth: '780px',
         margin: '0 auto',
-        padding: '2rem 1.5rem 4rem',
-        borderTop: '1px solid rgba(250, 250, 248, 0.08)',
+        padding: '0 1.5rem clamp(3rem, 5vw, 4rem)',
+        borderTop: '1px solid rgba(255,45,120,0.08)',
+        paddingTop: '2rem',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
         gap: '1rem',
       }}>
         {prev ? (
           <a href={`/blog/${prev.slug}`} style={{
-            background: 'rgba(250, 250, 248, 0.03)',
-            border: '1px solid rgba(250, 250, 248, 0.08)',
-            borderRadius: '8px',
+            background: '#1A0E1F',
+            border: '1px solid rgba(255,45,120,0.1)',
             padding: '1.25rem',
+            textDecoration: 'none',
           }}>
-            <div style={{ fontSize: '0.75rem', color: 'rgba(250, 250, 248, 0.4)', marginBottom: '0.5rem' }}>&larr; Previous</div>
-            <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--cream)', lineHeight: 1.4 }}>{prev.title}</div>
+            <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.58rem', color: '#A09090', marginBottom: '0.5rem', letterSpacing: '1px' }}>&larr; Previous</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: '#F5F0EB', lineHeight: 1.2, textTransform: 'uppercase', letterSpacing: '1px' }}>{prev.title}</div>
           </a>
         ) : <div />}
 
         {next ? (
           <a href={`/blog/${next.slug}`} style={{
-            background: 'rgba(250, 250, 248, 0.03)',
-            border: '1px solid rgba(250, 250, 248, 0.08)',
-            borderRadius: '8px',
+            background: '#1A0E1F',
+            border: '1px solid rgba(255,45,120,0.1)',
             padding: '1.25rem',
+            textDecoration: 'none',
             textAlign: 'right',
           }}>
-            <div style={{ fontSize: '0.75rem', color: 'rgba(250, 250, 248, 0.4)', marginBottom: '0.5rem' }}>Next &rarr;</div>
-            <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--cream)', lineHeight: 1.4 }}>{next.title}</div>
+            <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.58rem', color: '#A09090', marginBottom: '0.5rem', letterSpacing: '1px' }}>Next &rarr;</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: '#F5F0EB', lineHeight: 1.2, textTransform: 'uppercase', letterSpacing: '1px' }}>{next.title}</div>
           </a>
         ) : <div />}
       </nav>

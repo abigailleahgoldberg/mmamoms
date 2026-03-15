@@ -2,107 +2,126 @@ import type { Metadata } from 'next'
 import { fighters } from '../data/fighters'
 
 export const metadata: Metadata = {
-  title: 'Women\'s MMA Fighters | Iron Mom',
-  description: 'Complete profiles of the best women in MMA — champion records, career highlights, fighting styles, and analysis. Valentina Shevchenko, Zhang Weili, Amanda Nunes, and more.',
+  title: "Women's MMA Fighters | Iron Mom",
+  description: "Complete profiles of the best women in MMA — champion records, career highlights, fighting styles, and analysis. Valentina Shevchenko, Zhang Weili, Amanda Nunes, and more.",
   openGraph: {
-    title: 'Women\'s MMA Fighters | Iron Mom',
+    title: "Women's MMA Fighters | Iron Mom",
     description: 'Champion records, career highlights, and analysis for the best women in MMA.',
   },
 }
 
-const COLORS = {
-  plum: '#2D0A2E',
-  pink: '#FF2D78',
-  violet: '#7B2FBE',
-  bone: '#F5F0EB',
-  silver: '#C0C0C8',
-  dark: '#0F060F',
-}
-
 const OCTAGON_CLIP = 'polygon(50% 0%, 85% 15%, 100% 50%, 85% 85%, 50% 100%, 15% 85%, 0% 50%, 15% 15%)'
-
-const WEIGHT_CLASSES = ['All', 'Strawweight', 'Flyweight', 'Bantamweight', 'Featherweight']
 
 export default function FightersPage() {
   const champions = fighters.filter(f => f.isChampion)
-  const activeFighters = fighters.filter(f => !f.isRetired)
-  const retiredFighters = fighters.filter(f => f.isRetired)
+  const active = fighters.filter(f => !f.isRetired && !f.isChampion)
+  const retired = fighters.filter(f => f.isRetired)
 
   return (
-    <main style={{ minHeight: '100vh', background: COLORS.dark }}>
+    <main style={{ minHeight: '100vh', background: '#0C0610' }}>
 
-      {/* ── HERO ── */}
+      {/* HERO */}
       <section style={{
-        background: `linear-gradient(180deg, ${COLORS.plum} 0%, ${COLORS.dark} 100%)`,
-        padding: '5rem 2rem 4rem',
-        borderBottom: `1px solid rgba(255,45,120,0.2)`,
+        background: 'linear-gradient(180deg, #1A0E1F 0%, #0C0610 100%)',
+        padding: 'clamp(4rem, 8vw, 6rem) 1.5rem',
+        borderBottom: '1px solid rgba(255,45,120,0.1)',
       }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div style={{
+          <nav style={{
             fontFamily: "'Space Mono', monospace",
-            fontSize: '0.65rem',
-            color: COLORS.pink,
-            letterSpacing: '4px',
-            marginBottom: '1rem',
-            textTransform: 'uppercase',
+            fontSize: '0.6rem',
+            color: '#FF2D78',
+            letterSpacing: '3px',
+            marginBottom: '1.5rem',
+            display: 'flex',
+            gap: '0.5rem',
+            alignItems: 'center',
+            flexWrap: 'wrap',
           }}>
-            <a href="/" style={{ color: COLORS.silver, textDecoration: 'none' }}>Iron Mom</a>
-            <span style={{ margin: '0 0.5rem', color: 'rgba(255,45,120,0.4)' }}>/</span>
-            Fighters
-          </div>
+            <a href="/" style={{ color: '#A09090' }}>Iron Mom</a>
+            <span style={{ color: 'rgba(255,45,120,0.35)' }}>/</span>
+            <span>Fighters</span>
+          </nav>
+
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            fontWeight: 800,
-            fontSize: 'clamp(3rem, 8vw, 6rem)',
-            color: COLORS.bone,
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(3.5rem, 9vw, 7rem)',
+            color: '#F5F0EB',
             textTransform: 'uppercase',
-            lineHeight: 0.9,
-            letterSpacing: '-1px',
+            lineHeight: 0.88,
+            letterSpacing: '3px',
             marginBottom: '1.5rem',
           }}>
             <span style={{ display: 'block' }}>THE WOMEN</span>
-            <span style={{ display: 'block', color: COLORS.pink }}>WHO RUN MMA.</span>
+            <span style={{ display: 'block', color: '#FF2D78' }}>WHO RUN MMA.</span>
           </h1>
+
           <p style={{
-            fontFamily: "'Barlow', sans-serif",
+            fontFamily: 'var(--font-body)',
             fontSize: '1.05rem',
-            color: 'rgba(245,240,235,0.7)',
-            maxWidth: '560px',
-            lineHeight: 1.7,
+            color: 'rgba(245,240,235,0.6)',
+            maxWidth: '520px',
+            lineHeight: 1.75,
           }}>
-            Full profiles on every major women's fighter — records, career highlights, fighting styles, and our honest take on what makes each one special.
+            Full profiles on every major women&apos;s fighter — records, career highlights, fighting styles, and our honest take on what makes each one special.
           </p>
+
+          {/* Quick-jump */}
+          <div style={{ display: 'flex', gap: '0.75rem', marginTop: '2rem', flexWrap: 'wrap' }}>
+            {[
+              { label: 'Champions', href: '#champions' },
+              { label: 'Active', href: '#active' },
+              { label: 'Legends', href: '#legends' },
+            ].map(({ label, href }) => (
+              <a key={label} href={href} style={{
+                fontFamily: "'Space Mono', monospace",
+                fontSize: '0.62rem',
+                color: '#F5F0EB',
+                letterSpacing: '2px',
+                padding: '0.4rem 0.9rem',
+                border: '1px solid rgba(245,240,235,0.15)',
+                textTransform: 'uppercase',
+              }}>
+                {label}
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── CURRENT CHAMPIONS ── */}
+      {/* CHAMPIONS */}
       {champions.length > 0 && (
-        <section style={{ background: COLORS.plum, padding: '4rem 2rem' }}>
+        <section id="champions" style={{
+          background: '#1A0E1F',
+          padding: 'clamp(3rem, 6vw, 5rem) 1.5rem',
+          borderBottom: '1px solid rgba(255,45,120,0.08)',
+        }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{
               fontFamily: "'Space Mono', monospace",
-              fontSize: '0.65rem',
-              color: COLORS.pink,
+              fontSize: '0.62rem',
+              color: '#FF2D78',
               letterSpacing: '4px',
-              marginBottom: '0.75rem',
+              marginBottom: '0.6rem',
               textTransform: 'uppercase',
             }}>
-              Current Champions
+              Belt Holders
             </div>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 800,
-              fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-              color: COLORS.bone,
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              color: '#F5F0EB',
               textTransform: 'uppercase',
-              letterSpacing: '2px',
-              marginBottom: '2rem',
+              letterSpacing: '3px',
+              lineHeight: 1,
+              marginBottom: '2.5rem',
             }}>
-              THE BELT HOLDERS
+              CURRENT CHAMPIONS
             </h2>
+
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
               gap: '1.5rem',
             }}>
               {champions.map(fighter => (
@@ -110,8 +129,8 @@ export default function FightersPage() {
                   key={fighter.slug}
                   href={`/fighters/${fighter.slug}`}
                   style={{
-                    background: COLORS.dark,
-                    border: `2px solid ${COLORS.pink}`,
+                    background: '#0C0610',
+                    border: '2px solid #FF2D78',
                     padding: '2rem',
                     display: 'flex',
                     flexDirection: 'column',
@@ -122,59 +141,66 @@ export default function FightersPage() {
                 >
                   <div style={{
                     position: 'absolute',
-                    top: '1rem',
-                    right: '1rem',
+                    top: '1.25rem',
+                    right: '1.25rem',
                     fontFamily: "'Space Mono', monospace",
-                    fontSize: '0.55rem',
+                    fontSize: '0.52rem',
                     letterSpacing: '2px',
-                    color: COLORS.pink,
-                    background: 'rgba(255,45,120,0.15)',
-                    padding: '0.25rem 0.6rem',
+                    color: '#0C0610',
+                    background: '#FF2D78',
+                    padding: '0.25rem 0.65rem',
                     textTransform: 'uppercase',
                   }}>
                     Champion
                   </div>
+
                   <h3 style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    fontWeight: 800,
-                    fontSize: '1.6rem',
-                    color: COLORS.pink,
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.75rem',
+                    color: '#FF2D78',
                     textTransform: 'uppercase',
-                    letterSpacing: '1px',
+                    letterSpacing: '2px',
                     lineHeight: 1,
+                    paddingRight: '5rem',
                   }}>
                     {fighter.name}
                   </h3>
+
                   {fighter.nickname && (
                     <div style={{
                       fontFamily: "'Space Mono', monospace",
-                      fontSize: '0.65rem',
-                      color: COLORS.silver,
+                      fontSize: '0.62rem',
+                      color: '#A09090',
                       letterSpacing: '2px',
                     }}>
                       &ldquo;{fighter.nickname}&rdquo;
                     </div>
                   )}
-                  <div style={{
-                    display: 'flex',
-                    gap: '1.5rem',
-                    marginTop: '0.25rem',
-                  }}>
-                    <div>
-                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.55rem', color: 'rgba(245,240,235,0.5)', letterSpacing: '2px', marginBottom: '0.2rem' }}>WEIGHT CLASS</div>
-                      <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '1rem', color: COLORS.bone }}>{fighter.weightClass}</div>
-                    </div>
-                    <div>
-                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.55rem', color: 'rgba(245,240,235,0.5)', letterSpacing: '2px', marginBottom: '0.2rem' }}>RECORD</div>
-                      <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '1rem', color: COLORS.bone }}>{fighter.record}</div>
-                    </div>
+
+                  <div style={{ display: 'flex', gap: '2rem', marginTop: '0.25rem' }}>
+                    {[
+                      { label: 'Weight Class', value: fighter.weightClass },
+                      { label: 'Record', value: fighter.record },
+                    ].map(({ label, value }) => (
+                      <div key={label}>
+                        <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.52rem', color: 'rgba(245,240,235,0.4)', letterSpacing: '2px', marginBottom: '0.25rem', textTransform: 'uppercase' }}>
+                          {label}
+                        </div>
+                        <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', color: '#F5F0EB', letterSpacing: '1px' }}>
+                          {value}
+                        </div>
+                      </div>
+                    ))}
                   </div>
+
                   <div style={{
                     fontFamily: "'Space Mono', monospace",
-                    fontSize: '0.65rem',
-                    color: COLORS.pink,
+                    fontSize: '0.62rem',
+                    color: '#FF2D78',
                     letterSpacing: '1px',
                     marginTop: '0.5rem',
+                    paddingTop: '1rem',
+                    borderTop: '1px solid rgba(255,45,120,0.15)',
                   }}>
                     Full profile &rarr;
                   </div>
@@ -185,26 +211,30 @@ export default function FightersPage() {
         </section>
       )}
 
-      {/* ── ACTIVE FIGHTERS ── */}
-      <section style={{ padding: '5rem 2rem', background: COLORS.dark }}>
+      {/* ACTIVE FIGHTERS */}
+      <section id="active" style={{
+        padding: 'clamp(3rem, 6vw, 5rem) 1.5rem',
+        background: '#0C0610',
+        borderBottom: '1px solid rgba(255,45,120,0.08)',
+      }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{
             fontFamily: "'Space Mono', monospace",
-            fontSize: '0.65rem',
-            color: COLORS.pink,
+            fontSize: '0.62rem',
+            color: '#FF2D78',
             letterSpacing: '4px',
-            marginBottom: '0.75rem',
+            marginBottom: '0.6rem',
             textTransform: 'uppercase',
           }}>
             Active Fighters
           </div>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            fontWeight: 800,
-            fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-            color: COLORS.bone,
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            color: '#F5F0EB',
             textTransform: 'uppercase',
-            letterSpacing: '2px',
+            letterSpacing: '3px',
+            lineHeight: 1,
             marginBottom: '3rem',
           }}>
             IN THE CAGE NOW
@@ -212,90 +242,93 @@ export default function FightersPage() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
             gap: '2rem',
           }}>
-            {activeFighters.filter(f => !f.isChampion).map(fighter => (
+            {active.map(fighter => (
               <a
                 key={fighter.slug}
                 href={`/fighters/${fighter.slug}`}
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: 'none', display: 'block' }}
               >
                 <div style={{
-                  background: COLORS.plum,
+                  background: '#1A0E1F',
                   clipPath: OCTAGON_CLIP,
-                  padding: '4.5rem 2.5rem',
+                  padding: '4rem 2.5rem',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   textAlign: 'center',
                   gap: '0.6rem',
-                  minHeight: '320px',
+                  minHeight: '300px',
                   justifyContent: 'center',
                   position: 'relative',
-                  transition: 'transform 0.2s',
                 }}>
                   <div style={{
                     position: 'absolute',
                     inset: 0,
                     clipPath: OCTAGON_CLIP,
-                    border: `2px solid rgba(255,45,120,0.35)`,
+                    border: '2px solid rgba(255,45,120,0.25)',
                     pointerEvents: 'none',
                   }} />
+
                   <h3 style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    fontWeight: 800,
-                    fontSize: '1.3rem',
-                    color: COLORS.pink,
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.35rem',
+                    color: '#FF2D78',
                     textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                    lineHeight: 1.1,
+                    letterSpacing: '2px',
+                    lineHeight: 1.05,
                   }}>
                     {fighter.name}
                   </h3>
+
                   {fighter.nickname && (
                     <div style={{
                       fontFamily: "'Space Mono', monospace",
-                      fontSize: '0.6rem',
-                      color: COLORS.silver,
+                      fontSize: '0.58rem',
+                      color: '#A09090',
                       letterSpacing: '1px',
                     }}>
                       &ldquo;{fighter.nickname}&rdquo;
                     </div>
                   )}
+
                   <div style={{
                     fontFamily: "'Space Mono', monospace",
-                    fontSize: '0.6rem',
-                    color: COLORS.bone,
-                    letterSpacing: '1px',
+                    fontSize: '0.58rem',
+                    color: '#F5F0EB',
+                    letterSpacing: '2px',
+                    opacity: 0.65,
                   }}>
                     {fighter.weightClass}
                   </div>
+
                   <div style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    fontWeight: 800,
-                    fontSize: '1.4rem',
-                    color: COLORS.violet,
-                    letterSpacing: '2px',
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.5rem',
+                    color: '#A855F7',
+                    letterSpacing: '3px',
                   }}>
                     {fighter.record}
                   </div>
+
                   <div style={{
                     fontFamily: "'Space Mono', monospace",
-                    fontSize: '0.55rem',
-                    color: 'rgba(245,240,235,0.5)',
+                    fontSize: '0.52rem',
+                    color: 'rgba(245,240,235,0.4)',
                     letterSpacing: '1px',
-                    marginTop: '0.25rem',
                   }}>
                     {fighter.fightingStyle}
                   </div>
+
                   <div style={{
                     fontFamily: "'Space Mono', monospace",
-                    fontSize: '0.6rem',
-                    color: COLORS.pink,
+                    fontSize: '0.58rem',
+                    color: '#FF2D78',
                     letterSpacing: '1px',
                     marginTop: '0.25rem',
-                    borderBottom: `1px solid ${COLORS.pink}`,
+                    borderBottom: '1px solid rgba(255,45,120,0.4)',
                     paddingBottom: '2px',
                   }}>
                     Full bio &rarr;
@@ -307,75 +340,78 @@ export default function FightersPage() {
         </div>
       </section>
 
-      {/* ── RETIRED FIGHTERS ── */}
-      <section style={{ padding: '4rem 2rem', background: '#1A061B' }}>
+      {/* LEGENDS */}
+      <section id="legends" style={{
+        padding: 'clamp(3rem, 6vw, 5rem) 1.5rem',
+        background: '#1A0E1F',
+      }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{
             fontFamily: "'Space Mono', monospace",
-            fontSize: '0.65rem',
-            color: COLORS.silver,
+            fontSize: '0.62rem',
+            color: '#A09090',
             letterSpacing: '4px',
-            marginBottom: '0.75rem',
+            marginBottom: '0.6rem',
             textTransform: 'uppercase',
           }}>
             Legends
           </div>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            fontWeight: 800,
-            fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-            color: COLORS.bone,
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            color: '#F5F0EB',
             textTransform: 'uppercase',
-            letterSpacing: '2px',
+            letterSpacing: '3px',
+            lineHeight: 1,
             marginBottom: '2.5rem',
           }}>
             THEY BUILT THIS SPORT
           </h2>
+
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '1.5rem',
+            gap: '1.25rem',
           }}>
-            {retiredFighters.map(fighter => (
+            {retired.map(fighter => (
               <a
                 key={fighter.slug}
                 href={`/fighters/${fighter.slug}`}
                 style={{
-                  background: 'rgba(45,10,46,0.4)',
-                  borderLeft: `3px solid rgba(255,45,120,0.5)`,
+                  background: 'rgba(12,6,16,0.5)',
+                  borderLeft: '3px solid rgba(255,45,120,0.4)',
                   padding: '1.5rem',
                   display: 'flex',
-                  gap: '1.5rem',
+                  gap: '1.25rem',
                   alignItems: 'flex-start',
                   textDecoration: 'none',
                 }}
               >
                 <div style={{ flex: 1 }}>
                   <h3 style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    fontWeight: 800,
-                    fontSize: '1.3rem',
-                    color: COLORS.bone,
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.35rem',
+                    color: '#F5F0EB',
                     textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                    marginBottom: '0.4rem',
+                    letterSpacing: '2px',
+                    marginBottom: '0.35rem',
                   }}>
                     {fighter.name}
                   </h3>
                   <div style={{
                     fontFamily: "'Space Mono', monospace",
-                    fontSize: '0.6rem',
-                    color: COLORS.silver,
+                    fontSize: '0.58rem',
+                    color: '#A09090',
                     letterSpacing: '1px',
                     marginBottom: '0.75rem',
                   }}>
                     {fighter.weightClass} &bull; {fighter.record} &bull; Retired
                   </div>
                   <p style={{
-                    fontFamily: "'Barlow', sans-serif",
+                    fontFamily: 'var(--font-body)',
                     fontSize: '0.85rem',
-                    color: 'rgba(245,240,235,0.6)',
-                    lineHeight: 1.6,
+                    color: 'rgba(245,240,235,0.55)',
+                    lineHeight: 1.65,
                   }}>
                     {fighter.careerHighlights[0]}
                   </p>
