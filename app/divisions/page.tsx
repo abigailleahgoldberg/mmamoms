@@ -35,17 +35,17 @@ Zhang Weili currently sits at the top as the most complete fighter at the weight
     name: 'Flyweight',
     weightLimit: '125 lbs',
     poundage: 125,
-    champion: { name: 'Erin Blanchfield', slug: 'erin-blanchfield', record: '12-2' },
+    champion: { name: 'Alexa Grasso', slug: 'alexa-grasso', record: '16-3' },
     topContenders: [
-      { name: 'Manon Fiorot', rank: 1, record: '13-1', note: 'Former kickboxer, elite striker' },
-      { name: 'Valentina Shevchenko', rank: 2, record: '24-5', note: 'Former 7-time champion, still elite' },
-      { name: 'Alexa Grasso', rank: 3, record: '16-3', note: 'Former champion, dangerous submissions' },
+      { name: 'Erin Blanchfield', rank: 1, record: '12-2', note: 'Elite submission grappler, #1 contender' },
+      { name: 'Manon Fiorot', rank: 2, record: '13-1', note: 'Former kickboxer, elite striker' },
+      { name: 'Valentina Shevchenko', rank: 3, record: '24-5', note: 'Former 7-time champion, still elite' },
       { name: 'Taila Santos', rank: 4, record: '21-3', note: 'Former title challenger' },
       { name: 'Maycee Barber', rank: 5, record: '14-2', note: 'Explosive fighter on the rise' },
     ],
-    description: `The flyweight division was essentially built around Valentina Shevchenko, who dominated it so completely for five years that people forgot it existed independently of her. Seven title defenses. Seven consecutive stops on the mountain. When Alexa Grasso submitted her at UFC 285, the division opened up in ways it had not been open since its creation.
+    description: `The flyweight division was essentially built around Valentina Shevchenko, who dominated it so completely for five years that people forgot it existed independently of her. Seven title defenses. When Alexa Grasso submitted her at UFC 285 in one of the biggest upsets in women's MMA history, the division opened up in ways it had not been open since its creation.
 
-Now Erin Blanchfield holds the title, having submitted multiple former title challengers with a grappling game that makes her genuinely difficult to beat. She represents the new face of the division — younger, submission-focused, and with years of development still ahead of her. The contender pool is legitimately excellent, with Manon Fiorot's elite striking and Valentina Shevchenko's continued presence making every title fight an event.`,
+Grasso has proven her championship run was no fluke, winning the rematch against Shevchenko and establishing herself as the legitimate queen of the flyweight division. A Mexican champion who has become a genuine sports star in Mexico, Grasso defends the title with the same pressure-fighting, submission-threatening style that made her champion in the first place.`,
     vibe: `Flyweight is where wrestling meets elite striking. The division is physical in a way that strawweight is not — these are bigger athletes who hit harder — but the technical ceiling is just as high. Shevchenko's presence alone raised the floor of what every other flyweight had to become.`,
     accentColor: '#A855F7',
     active: true,
