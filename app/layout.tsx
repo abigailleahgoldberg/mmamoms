@@ -57,9 +57,13 @@ const FOOTER_LINKS = [
     ],
   },
   {
-    heading: 'Network',
+    heading: 'Our Network',
     links: [
-      { label: 'MMA Dads', href: 'https://mmadads.com' },
+      { label: 'MMADads.com', href: 'https://mmadads.com' },
+      { label: 'TheVoiceOfCash.com', href: 'https://thevoiceofcash.com' },
+      { label: 'WeBearish.com', href: 'https://webearish.com' },
+      { label: 'AISkillsAgents.com', href: 'https://aiskillsagents.com' },
+      { label: 'Full Network →', href: 'https://thevoiceofcash.com/network' },
     ],
   },
 ]
